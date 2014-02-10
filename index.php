@@ -30,11 +30,11 @@ if (isset($_POST['guess']))
 		$correct++;
 		unset($_POST['word']);
 		unset($_POST['jumble']);
-		$message = 'Woo hoo!';
+		$message = 'Correct!';
 	}
 	else
 	{
-		$message = 'Try again';
+		$message = 'Incorrect, try again.';
 	}
 }
 
