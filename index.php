@@ -54,7 +54,7 @@ $_POST['word'] = (isset($_POST['word'])) ? filter_input(INPUT_POST, 'word', FILT
 
 		body,
 		form {
-			max-width: 603px;
+			max-width: 803px;
 			margin: 0 auto;
 			text-align: center;
 		}
@@ -80,13 +80,14 @@ $_POST['word'] = (isset($_POST['word'])) ? filter_input(INPUT_POST, 'word', FILT
 </head>
 <body>
 <?php
-
-echo '<h1>' . $message . '</h1>';
-
+if (!isset($_POST['hint']))
+{
+	echo '<h1>' . $message . '</h1>';
+}
 if (isset($_POST['hint']))
 {
 	$hints++;
-	echo '<p>Hint: ' . htmlspecialchars(substr($_POST['word'], 0, $hints)) . '</p>';
+	echo '<h1>Hint: ' . htmlspecialchars(substr($_POST['word'], 0, $hints)) . '</h1>';
 }
 
 if (isset($_POST['hint']) || isset($_POST['attempt']))
