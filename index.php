@@ -34,29 +34,13 @@ if (isset($_POST['guess']))
 	}
 	else
 	{
-		$message = 'Incorrect, try again.';
+		$message = 'Wrong, try again.';
 	}
-}
-
-echo '<h1>' . $message . '</h1>';
-
-if (isset($_POST['hint']))
-{
-	$hints++;
-	echo '<p>Hint: ' . htmlspecialchars(substr($_POST['word'], 0, $hints)) . '</p>';
-}
-
-if (isset($_POST['hint']) || isset($_POST['attempt']))
-{
-	$guesses++;
-	echo '<p>' . number_format(($correct / $guesses) * 100, 2) . '% correct</p>';
-
 }
 
 $_POST['jumble'] = (isset($_POST['jumble'])) ? filter_input(INPUT_POST, 'jumble', FILTER_SANITIZE_STRING) : implode($jumble);
 $_POST['word'] = (isset($_POST['word'])) ? filter_input(INPUT_POST, 'word', FILTER_SANITIZE_STRING) : $word;
 
-echo '<p>The scramble is: <em>' . htmlspecialchars($_POST['jumble']) . '</em></p>';
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,10 +52,15 @@ echo '<p>The scramble is: <em>' . htmlspecialchars($_POST['jumble']) . '</em></p
 			color: #444;
 		}
 
-		body {
-			width: 403px;
+		body,
+		form {
+			max-width: 603px;
 			margin: 0 auto;
 			text-align: center;
+		}
+
+		form {
+			max-width: 403px;
 		}
 
 		input {
@@ -90,6 +79,24 @@ echo '<p>The scramble is: <em>' . htmlspecialchars($_POST['jumble']) . '</em></p
 	</style>
 </head>
 <body>
+<?php
+
+echo '<h1>' . $message . '</h1>';
+
+if (isset($_POST['hint']))
+{
+	$hints++;
+	echo '<p>Hint: ' . htmlspecialchars(substr($_POST['word'], 0, $hints)) . '</p>';
+}
+
+if (isset($_POST['hint']) || isset($_POST['attempt']))
+{
+	$guesses++;
+	echo '<p>' . number_format(($correct / $guesses) * 100, 2) . '% correct</p>';
+
+}
+
+echo '<p>The scramble is: <em>' . htmlspecialchars($_POST['jumble']) . '</em></p>'; ?>
 <form action="" method="post">
 	<input type="text" name="guess" autofocus="autofocus"/>
 	<input type="hidden" name="word" value="<?php echo $_POST['word'] ?>">
