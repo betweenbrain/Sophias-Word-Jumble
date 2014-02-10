@@ -99,7 +99,7 @@ if (isset($_POST['hint']) || isset($_POST['attempt']))
 
 echo '<p>The scramble is: <em>' . htmlspecialchars($_POST['jumble']) . '</em></p>'; ?>
 <form action="" method="post">
-	<input type="text" name="guess" autofocus="autofocus"/>
+	<input type="text" name="guess" autofocus="autofocus" autocomplete="off"/>
 	<input type="hidden" name="word" value="<?php echo $_POST['word'] ?>">
 	<input type="hidden" name="jumble" value="<?php echo $_POST['jumble'] ?>">
 	<input type="hidden" name="guesses" value="<?php echo $guesses ?>">
